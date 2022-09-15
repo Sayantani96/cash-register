@@ -1,9 +1,10 @@
 var btnClicked=document.querySelector('#check-btn');
 var paidAmt=document.querySelector('#cash-given');
 var billAmt=document.querySelector('#bill-amount');
-var availableNotes=[2000,500,100,20,10,5,1];
 var noOfNotes=document.querySelectorAll('#num-notes');
 var displayMessage=document.querySelector('#message');
+
+var availableNotes=[2000,500,100,20,10,5,1];
 
 btnClicked.addEventListener('click',function clickHandler(){
     clearTable();
@@ -26,12 +27,19 @@ btnClicked.addEventListener('click',function clickHandler(){
 function calculateChange(change){
     var numberOfNotes=0;
     for(let i=0;i<availableNotes.length;i++){
+
         noOfNotes[i].style.opacity=1;
-        if(change>=availableNotes[i]){
+
+        if(change>=availableNotes[i]){   
             numberOfNotes=Math.trunc(change/availableNotes[i]);
+            noOfNotes[i].innerText=numberOfNotes;
         }
+        else{
+            noOfNotes[i].innerText='0';
+        }
+
         change=change%availableNotes[i];
-        noOfNotes[i].innerText=numberOfNotes;
+
     }
     
 }
